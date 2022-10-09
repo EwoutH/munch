@@ -26,6 +26,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Upgrade build tools and pytest
       run: pip install --upgrade pip build wheel setuptools pytest
+    - name: Install dependencies
+      run: pip install -r requirements.txt
     - name: Build distributions
       run: python -m build
     - name: Test with Pytest
