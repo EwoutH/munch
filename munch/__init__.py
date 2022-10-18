@@ -202,7 +202,7 @@ class Munch(dict):
 
             (*) Invertible so long as collection contents are each repr-invertible.
         """
-        return '{}({})'.format(self.__class__.__name__, dict.__repr__(self))
+        return f'{self.__class__.__name__}({dict.__repr__(self)})'
 
     def __dir__(self):
         return list(iterkeys(self))
@@ -339,8 +339,7 @@ class DefaultMunch(Munch):
         return type(self).fromDict(self, default=self.__default__)
 
     def __repr__(self):
-        return '{}({!r}, {})'.format(
-            type(self).__name__, self.__undefined__, dict.__repr__(self))
+        return f'{type(self).__name__}({self.__undefined__!r}, {dict.__repr__(self)})'
 
 
 class DefaultFactoryMunch(Munch):
@@ -371,8 +370,7 @@ class DefaultFactoryMunch(Munch):
 
     def __repr__(self):
         factory = self.default_factory.__name__
-        return '{}({}, {})'.format(
-            type(self).__name__, factory, dict.__repr__(self))
+        return f'{type(self).__name__}({factory}, {dict.__repr__(self)})'
 
     def __setattr__(self, k, v):
         if k == 'default_factory':
